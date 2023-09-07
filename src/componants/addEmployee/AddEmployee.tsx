@@ -1,6 +1,27 @@
+import { ChangeEvent, FormEvent, useState } from 'react'
 import './AddEmployee.css'
 
 const AddEmployee = () => {
+    const [ employee, setEmployee] = useState({
+        id:"",
+        firstName: "",
+        lastName: "",
+        email: "",
+    })
+    function handleChange(e: ChangeEvent<HTMLInputElement>){
+        const {name, value} = e.target;
+        
+        setEmployee({
+            ...employee,
+            [name] : value
+        })
+        
+    }
+
+    const saveEmployee = (e: FormEvent) => {
+        e.preventDefault();
+    }
+
   return (
     <div className="flex max-w-2xl shadow-lg border-b mx-auto">
         <div className="px-8 py-8">
@@ -9,22 +30,38 @@ const AddEmployee = () => {
             </div>
 
             <div className='items-center justify-center h-14 w-full my-4 mb-10'>
-                <label className='block text-gray-800 text-sm font-normal' htmlFor='firstname'>First Name</label>
-                <input type='text' id='firstname' name='firstname' placeholder='First Name' className='border h-10 w-96 mt-2 px-2 py-2'/>
+                <label 
+                className='block text-gray-800 text-sm font-normal' 
+                htmlFor='firstName'>
+                    First Name
+                </label>
+                <input 
+                    type='text' 
+                    id='firstName' 
+                    name='firstName' 
+                    placeholder='First Name' 
+                    className='border h-10 w-96 mt-2 px-2 py-2'
+                    value={employee.firstName}
+                    onChange={(e) => handleChange(e)}
+                />
             </div>
 
             <div className='items-center justify-center h-14 w-full my-4 mb-10'>
-                <label className='block text-gray-800 text-sm font-normal' htmlFor='lastname'>Last Name</label>
-                <input type='text' id='lastname' name='lastname' placeholder='Last Name' className='border h-10 w-96 mt-2 px-2 py-2'/>
+                <label className='block text-gray-800 text-sm font-normal' htmlFor='lastName'>Last Name</label>
+                <input type='text' id='lastName' name='lastName' placeholder='Last Name' className='border h-10 w-96 mt-2 px-2 py-2'
+                value={employee.lastName}
+                onChange={handleChange}/>
             </div>
 
             <div className='items-center justify-center h-14 w-full my-4 mb-10'>
                 <label className='block text-gray-800 text-sm font-normal' htmlFor='email'>Email</label>
-                <input type='email' id='email' name='email' placeholder='Email' className='border h-10 w-96 mt-2 px-2 py-2'/>
+                <input type='email' id='email' name='email' placeholder='Email' className='border h-10 w-96 mt-2 px-2 py-2'
+                value={employee.email}
+                onChange={(e) => handleChange(e)}/>
             </div>
 
             <div className='items-center justify-center h-14 w-full my-4 mb-10 space-x-5'>
-                <button className='rounded text-white font-semibold bg-green-400 hover:bg-green-700 px-6 py-2'>
+                <button onClick={saveEmployee} className='rounded text-white font-semibold bg-green-400 hover:bg-green-700 px-6 py-2'>
                     Save
                 </button>
                 <button className='rounded text-white font-semibold bg-red-400 hover:bg-red-700 px-6 py-2'>
