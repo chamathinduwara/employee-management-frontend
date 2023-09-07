@@ -21,6 +21,9 @@ const AddEmployee = () => {
     const saveEmployee = (e: FormEvent) => {
         e.preventDefault();
     }
+    const clearEmployee = (e: FormEvent) => {
+        e.preventDefault();
+    }
 
   return (
     <div className="flex max-w-2xl shadow-lg border-b mx-auto">
@@ -64,7 +67,7 @@ const AddEmployee = () => {
                 <button onClick={saveEmployee} className='rounded text-white font-semibold bg-green-400 hover:bg-green-700 px-6 py-2'>
                     Save
                 </button>
-                <button className='rounded text-white font-semibold bg-red-400 hover:bg-red-700 px-6 py-2'>
+                <button onClick={clearEmployee} className='rounded text-white font-semibold bg-red-400 hover:bg-red-700 px-6 py-2'>
                     Clear
                 </button>
             </div>
